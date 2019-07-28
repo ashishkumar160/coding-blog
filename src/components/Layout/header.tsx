@@ -8,7 +8,7 @@ interface Props {
 const Header: React.FC<Props> = ({ siteTitle }) => (
   <header
     style={{
-      background: `rebeccapurple`,
+      background: `black`,
       marginBottom: `1.45rem`,
     }}
   >

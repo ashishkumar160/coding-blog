@@ -1,20 +1,45 @@
-import { Link } from "gatsby"
 import React from "react"
-import Image from "../components/image"
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+import { graphql } from "gatsby"
+import Layout from "../components/Layout"
+import { RichText } from "prismic-reactjs"
+import { IndexQuery } from "../graphqlTypes"
+import BlogPosts from "../components/BlogPosts"
+import SEO from "../components/Layout/seo"
 
-const IndexPage: React.FC = () => (
-  <Layout>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link>
-  </Layout>
-)
+export const query = graphql`
+  query index {
+    prismic {
+      allBlog_homes {
+        edges {
+          node {
+            headline
+            description
+            image
+          }
+        }
+      }
+    }
+  }
+`
+
+interface Props {
+  data: IndexQuery
+}
+
+const IndexPage: React.FC<Props> = ({ data }) => {
+  const doc = data.prismic!.allBlog_homes.edges!.slice(0, 1).pop()
+  if (!doc) return null
+  return (
+    <Layout>
+      <SEO title="Home" />
+      <div>
+        <img src={doc.node.image.url} alt="avatar image" />
+        <h1>{RichText.asText(doc.node.headline)}</h1>
+        <p>{RichText.asText(doc.node.description)}</p>
+      </div>
+      <BlogPosts />
+    </Layout>
+  )
+}
 
 export default IndexPage

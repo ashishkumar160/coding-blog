@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter TypeScript`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@andykenward`,
+    title: `Code Blog`,
+    description: `A blog focused on coding with actual IDE to test your code.`,
+    author: `@ashishkumar160`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -24,10 +24,26 @@ module.exports = {
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/icon.png`, // This path is relative to the root of the site.
       },
     },
     `gatsby-plugin-typescript`,
+    {
+      resolve: `gatsby-source-prismic-graphql`,
+      options: {
+        repositoryName: "coding-blog",
+        previews: true,
+        path: "/preview",
+        pages: [
+          {
+            type: "Blog_post",
+            match: "/blog/:uid",
+            path: "/blog-preview",
+            component: require.resolve("./src/templates/post.tsx"),
+          },
+        ],
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

@@ -1,5 +1,5 @@
 {
-  "name": "code-blog",
+  "name": "coding-blog",
   "private": true,
   "description": "A blog focused on coding",
   "version": "0.1.0",
@@ -13,7 +13,7 @@
     "gatsby-plugin-sharp": "^2.2.9",
     "gatsby-plugin-typescript": "^2.1.2",
     "gatsby-source-filesystem": "^2.1.6",
-    "gatsby-source-prismic-graphql": "^3.3.1",
+    "gatsby-source-prismic-graphql": "^3.4.0-beta.1",
     "gatsby-transformer-sharp": "^2.2.4",
     "graphql": "^14.4.2",
     "monaco-editor": "^0.17.1",
@@ -24,7 +24,6 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.1",
-    "react-monaco-editor": "^0.28.0",
     "ts-optchain": "^0.1.7"
   },
   "devDependencies": {
